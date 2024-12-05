@@ -1,0 +1,46 @@
+version: '3'
+
+tasks:
+
+  default:
+    cmds:
+      - task --list-all
+
+  create_ps_test_file:
+    cmds:
+      - |
+          docker run -it --rm -v .:/work -w /work --net host mcr.microsoft.com/powershell:ubi-9 pwsh -Command "'
+          # Import the module
+          Import-Module .\bin\Debug\netstandard2.0\myModule.dll
+          ' | Set-Content -Path ./test-module.ps1"
+    summary: |
+      Create PowerShell test file for the module. Run this and add ps cmdlets to the newly created file before running `task e2e`.
+    aliases:
+      - init
+
+  build_module:
+    cmds:
+      - docker run -it --rm -v ".:/work" -w /work mcr.microsoft.com/dotnet/sdk:8.0 bash -c "dotnet build"
+    description: "Build the PowerShell module"
+    aliases:
+      - dll
+
+  run_build_with_powershell:
+    cmds:
+      - docker run -it --rm -v .:/work -w /work --net host mcr.microsoft.com/powershell:ubi-9 pwsh -File ./test-module.ps1
+    description: "Run the PowerShell test file created to verify the module functionality"
+    aliases:
+      - run
+
+  full_build_and_test:
+    cmds:
+      - task dll
+      - task run
+    description: "Run full build and test process"
+    aliases:
+      - e2e
+
+
+  
+
+
