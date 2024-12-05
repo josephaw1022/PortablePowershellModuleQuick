@@ -7,6 +7,14 @@ This project serves as a quick proof of concept (POC) and spike into creating **
 
 The purpose of this POC is not only to generate a fun **Pet Fortune** cmdlet based on a pet type and favorite number, but also to give you hands-on experience in understanding how **cmdlets** work, how PowerShell integrates with .NET libraries, and how you can develop modules that are platform-agnostic. This is a great way to get a deeper understanding of PowerShell cmdlet development, module creation, and cross-platform compatibility using **.NET Standard**.
 
+
+## Additional Resources
+
+To make this project work, we rely on the [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library#readme-body-tab) NuGet package. This package provides the necessary libraries to develop PowerShell modules that are portable across different platforms using .NET Standard. It enables seamless integration of PowerShell with .NET, allowing this project to run on macOS, Linux, and Windows without modification.
+
+For more details on how to write portable modules for PowerShell, check out the [official documentation on portable PowerShell modules](https://learn.microsoft.com/en-us/powershell/scripting/dev-cross-plat/writing-portable-modules?view=powershell-7.4#supporting-technologies).
+
+
 ## Prerequisites
 
 Before running the tasks, make sure you have the following installed:
